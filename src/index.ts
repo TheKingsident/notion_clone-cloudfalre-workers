@@ -35,7 +35,7 @@ app.post('/translateDocument', async (c) => {
 
 	const response = await c.env.AI.run('@cf/meta/m2m100-1.2b', {
 		text: summaryResponse.summary,
-		source_lang: 'en',
+		source_lang: 'english',
 		target_lang: targetLang,
 	});
 
