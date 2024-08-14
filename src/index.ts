@@ -9,8 +9,8 @@ type Bindings = {
 
 const app = new Hono<{ Bindings: Bindings }>();
 
-
 app.use(
+	'/*',
 	cors({
 		origin: '*',
 		allowHeaders: ['Content-Type', 'X-Custom-Header', 'Upgrade-Insecure-Requests'],
@@ -20,6 +20,10 @@ app.use(
 		credentials: true,
 	})
 );
+
+app.get('/', (c) => {
+	return c.text('Welcome to the the notion-clone cloudflare worker!');
+});
 
 app.post('/translateDocument', async (c) => {
 	const { documentData, targetLanguage } = await c.req.json();
