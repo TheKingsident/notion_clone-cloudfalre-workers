@@ -26,7 +26,7 @@ app.get('/', (c) => {
 });
 
 app.post('/translateDocument', async (c) => {
-	const { documentData, targetLanguage } = await c.req.json();
+	const { documentData, targetLang } = await c.req.json();
 
 	const summaryResponse = await c.env.AI.run('@cf/facebook/bart-large-cnn', {
 		input_text: documentData,
@@ -36,7 +36,7 @@ app.post('/translateDocument', async (c) => {
 	const response = await c.env.AI.run('@cf/meta/m2m100-1.2b', {
 		text: summaryResponse.summary,
 		source_lang: 'en',
-		target_lang: targetLanguage,
+		target_lang: targetLang,
 	});
 
 	return new Response(JSON.stringify(response));
