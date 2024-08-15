@@ -65,7 +65,7 @@ app.post('/chatToDocument', async (c)=> {
             
         ],
         model: 'gpt-3.5-turbo',
-        temperature: 0.4
+        temperature: 0.5
     });
 
     const response = chatCompletion.choices[0].message.content;
